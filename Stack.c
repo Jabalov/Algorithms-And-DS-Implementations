@@ -1,3 +1,4 @@
+
 typedef struct stack {
   int top;
   StackEntry entry[MAXSTACK];
@@ -15,7 +16,7 @@ void Pop(StackEntry *pe, Stack *ps) {
     *pe = ps -> entry[-- ps -> top];
 }
 
-void Push(StackEntry element, Stack *ps ) {
+void Push(StackEntry e, Stack *ps ) {
     ps -> entry[ps -> top ++] = e, return 1;
 }
 
@@ -43,13 +44,13 @@ void TraverseStack(Stack *ps, void(*pf)(StackEntry)) {
   }
 }
 
-void main(int argc, char const *argv[]) {
+void main() {
   StackEntry e;
   Stack s;
   CreateStack(&s);
 
   if(!isFull(&s))
-    Push(element, &s);
+    Push(e, &s);
 
   if(!isEmpty(&s))
     Pop(&e, &s);
