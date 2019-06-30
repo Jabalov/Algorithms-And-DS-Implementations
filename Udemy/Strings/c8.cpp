@@ -27,8 +27,22 @@ void perm(char s[], int k)
             }
 }
 
+void perm1(char *s, int lo, int hi)
+{
+    if (lo == hi)
+        printf("%s\n", s);
+
+    else
+        for (int i = lo; i <= hi; i++)
+        {
+            swap(s[lo], s[i]);
+            perm1(s, lo + 1, hi);
+            swap(s[lo], s[i]);
+        }
+}
+
 int main()
 {
-    char s[] = "ABC";
-    perm(s, 0);
+    char s[] = "ABCD";
+    perm1(s, 0, 3);
 }
