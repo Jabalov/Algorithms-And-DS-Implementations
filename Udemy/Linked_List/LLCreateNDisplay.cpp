@@ -109,7 +109,7 @@ struct Node *LS(struct Node *p, int x)
             q->next = p->next;
             p->next = first->next;
             first = p;
-            return p;
+            printf("\nfound\n");
         }
 
         q = p;
