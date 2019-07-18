@@ -148,6 +148,18 @@ void Insert(struct Node *p, int idx, int x)
     }
 }
 
+void InsertBack(int x)
+{
+    struct Node *tmp = (struct Node *)malloc(sizeof(struct Node)), *last;
+    tmp->data = x;
+    tmp->next = NULL;
+
+    if (first == NULL)
+        first = last = tmp;
+    else
+        last->next = tmp, last = tmp;
+}
+
 int main()
 {
     int A[] = {3, 5, 7, 10, 25, 8, 32, 2};
