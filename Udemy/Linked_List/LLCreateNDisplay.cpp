@@ -51,10 +51,10 @@ int count(struct Node *p)
 
 int Rcount(struct Node *p)
 {
-    if (p != NULL)
-        return Rcount(p->next) + 1;
-    else
+    if (p == NULL)
         return 0;
+    else
+        return Rcount(p->next) + 1;
 }
 
 int sum(struct Node *p)
