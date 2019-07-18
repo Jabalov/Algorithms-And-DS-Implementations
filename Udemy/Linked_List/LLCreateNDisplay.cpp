@@ -18,7 +18,7 @@ void Create(int A[], int n)
     first->next = NULL;
     last = first;
 
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         LL = (struct Node *)malloc(sizeof(struct Node));
         LL->data = A[i];
@@ -126,11 +126,34 @@ struct Node *RLS(struct Node *p, int x)
     return RLS(p->next, x);
 }
 
+void Insert(struct Node *p, int idx, int x)
+{
+    if (idx < 0 || idx > count(p))
+        return;
+
+    struct Node *tmp = (struct Node *)malloc(sizeof(struct Node));
+    tmp->data = x;
+    int i;
+
+    if (idx == 0)
+        tmp->next = first, first = tmp;
+
+    else
+    {
+        for (i = 0; i < idx - 1; i++)
+            p = p->next;
+
+        tmp->next = p->next;
+        p->next = tmp;
+    }
+}
+
 int main()
 {
     int A[] = {3, 5, 7, 10, 25, 8, 32, 2};
     Create(A, 8);
 
+    Insert(first, 0, 2);
     Display(first);
 
     return 0;
