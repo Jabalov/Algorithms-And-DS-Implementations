@@ -60,12 +60,8 @@ int Rcount(struct Node *p)
 int sum(struct Node *p)
 {
     int s = 0;
-
     while (p != NULL)
-    {
-        s += p->data;
-        p = p->next;
-    }
+        s += p->data, p = p->next;
     return s;
 }
 
