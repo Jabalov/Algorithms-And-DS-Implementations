@@ -98,6 +98,34 @@ int RMax(struct Node *p)
         return p->data;
 }
 
+struct Node *LS(struct Node *p, int x)
+{
+    struct Node *q;
+
+    while (p->next != NULL)
+    {
+        if (p->data == x)
+        {
+            q->next = p->next;
+            p->next = first->next;
+            first = p;
+            return p;
+        }
+
+        q = p;
+        p = p->next;
+    }
+}
+
+struct Node *RLS(struct Node *p, int x)
+{
+    if (p == NULL)
+        return NULL;
+    if (p->data == x)
+        return p;
+    return RLS(p->next, x);
+}
+
 int main()
 {
     int A[] = {3, 5, 7, 10, 25, 8, 32, 2};
