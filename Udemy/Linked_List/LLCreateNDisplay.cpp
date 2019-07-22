@@ -162,7 +162,7 @@ void InsertBack(int x)
 
 void InsertSorted(struct Node *p, int x)
 {
-    struct Node *tmp = (struct Node *)malloc((sizeof(struct Node))), *q;
+    struct Node *tmp = (struct Node *)malloc((sizeof(struct Node))), *q = NULL;
     tmp->data = x;
     tmp->next = NULL;
 
