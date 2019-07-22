@@ -203,7 +203,7 @@ int Delete(struct Node *p, int idx)
     }
     else
     {
-        for (i; i < idx - 1; i++)
+        for (i; i < idx - 1 && p; i++)
             q = p,
             p = p->next;
 
@@ -214,12 +214,45 @@ int Delete(struct Node *p, int idx)
     }
 }
 
+int isSorted(struct Node *p)
+{
+    int x = -60000;
+
+    while (p != NULL)
+    {
+        if (p->data < x)
+            return 0;
+
+        x = p->data;
+        p = p->next;
+    }
+    return 1;
+}
+
+void RemoveDuplicate(struct Node *p)
+{
+    struct Node *q = p->next;
+    while (q != NULL)
+    {
+        if (p->data != q->data)
+            p = q,
+            q = q->next;
+
+        else
+        {
+            p->next = q->next;
+            free(q);
+            q = p->next;
+        }
+    }
+}
 int main()
 {
-    int A[] = {10, 20, 30, 40, 50};
-    Create(A, 5);
-    Delete(first, 2);
 
+    int A[] = {10, 20, 20, 40, 50, 50, 50, 60};
+    Create(A, 8);
+
+    RemoveDuplicate(first);
     Display(first);
 
     return 0;
