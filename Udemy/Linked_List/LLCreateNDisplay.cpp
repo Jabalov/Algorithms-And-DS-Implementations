@@ -185,11 +185,40 @@ void InsertSorted(struct Node *p, int x)
     }
 }
 
+int Delete(struct Node *p, int idx)
+{
+    struct Node *q = NULL;
+    int x = -1, i = 0;
+
+    if (idx < 1 || idx > count(p))
+        return -1;
+
+    if (idx == 1)
+    {
+        q = first;
+        x = first->data;
+        first = first->next;
+        free(q);
+        return x;
+    }
+    else
+    {
+        for (i; i < idx - 1; i++)
+            q = p,
+            p = p->next;
+
+        q->next = p->next;
+        x = p->data;
+        free(p);
+        return x;
+    }
+}
+
 int main()
 {
     int A[] = {10, 20, 30, 40, 50};
     Create(A, 5);
-    InsertSorted(first, 15);
+    Delete(first, 2);
 
     Display(first);
 
