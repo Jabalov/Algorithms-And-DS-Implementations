@@ -7,7 +7,7 @@ struct Node
 {
     int data;
     struct Node *next;
-} *first = NULL;
+} *first = NULL, *second = NULL, *third = NULL;
 
 void Create(int A[], int n)
 {
@@ -266,13 +266,37 @@ void Rev1(struct Node *p)
         q = q->next;
 }
 
+void Rev2(struct Node *p)
+{
+    struct Node *q = NULL, *r = NULL;
+    p = first;
+    while (p->next != NULL)
+    {
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
+    }
+    first = q;
+}
+
+void Rev3(struct Node *q, struct Node *p)
+{
+    if (p->next)
+        Rev3(p, p->next), p->next = q;
+    else
+        first = q;
+}
+
+
+
 int main()
 {
 
     int A[] = {10, 20, 40, 50, 60};
     Create(A, 5);
 
-    Rev1(first);
+    Rev3(NULL, first);
     Display(first);
 
     return 0;
