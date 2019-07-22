@@ -195,10 +195,10 @@ int Delete(struct Node *p, int idx)
 
     if (idx == 1)
     {
-        q = first;
+        p = first;
         x = first->data;
         first = first->next;
-        free(q);
+        free(p);
         return x;
     }
     else
