@@ -246,13 +246,33 @@ void RemoveDuplicate(struct Node *p)
         }
     }
 }
+
+void Rev1(struct Node *p)
+{
+    int *A, i = 0;
+    struct Node *q = p;
+
+    A = (int *)malloc(sizeof(int) * count(p));
+
+    while (q->next != NULL && i < count(p))
+        A[i++] = q->data,
+        q = q->next;
+
+    q = p;
+    i--;
+
+    while (q->next != NULL && i >= 0)
+        q->data = A[i--],
+        q = q->next;
+}
+
 int main()
 {
 
-    int A[] = {10, 20, 20, 40, 50, 50, 50, 60};
-    Create(A, 8);
+    int A[] = {10, 20, 40, 50, 60};
+    Create(A, 5);
 
-    RemoveDuplicate(first);
+    Rev1(first);
     Display(first);
 
     return 0;
