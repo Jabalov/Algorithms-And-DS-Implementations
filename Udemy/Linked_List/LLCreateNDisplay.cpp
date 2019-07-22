@@ -160,12 +160,37 @@ void InsertBack(int x)
         last->next = tmp, last = tmp;
 }
 
+void InsertSorted(struct Node *p, int x)
+{
+    struct Node *tmp = (struct Node *)malloc((sizeof(struct Node))), *q;
+    tmp->data = x;
+    tmp->next = NULL;
+
+    if (first == NULL)
+        first = tmp;
+
+    else
+    {
+        while (p && p->data < x)
+            q = p,
+            p = p->next;
+
+        if (p == first)
+            tmp->next = first,
+            first = tmp;
+
+        else
+            tmp->next = q->next,
+            q->next = tmp;
+    }
+}
+
 int main()
 {
-    int A[] = {3, 5, 7, 10, 25, 8, 32, 2};
-    Create(A, 8);
+    int A[] = {10, 20, 30, 40, 50};
+    Create(A, 5);
+    InsertSorted(first, 15);
 
-    Insert(first, 0, 2);
     Display(first);
 
     return 0;
