@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct Node
 {
@@ -56,6 +57,31 @@ int isOperand(char x)
         return 1;
 }
 
+char *intoPostfix(char *infix)
+{
+    int i, j;
+    i = j = 0;
+    int len = strlen(infix);
+    char *postfix = (char *)malloc(sizeof(char) * (len + 2));
+
+    while (infix[i] != '\0')
+    {
+        if (isOperand(infix[i]))
+            postfix[j++] = infix[i++];
+        else if (pre(infix[i]) > pre(top->data))
+            push(infix[i++]);
+
+        else
+            postfix[j++] = pop();
+    }
+
+    while (top != NULL)
+        postfix[j++] = pop();
+
+    postfix[j] = '\0';
+    return postfix;
+}
+
 void Display()
 {
     struct Node *p;
@@ -92,4 +118,10 @@ int isMatched(char *exp)
 
 int main()
 {
+    char *infix = "a+b*c-d/e";
+    push(' ');
+
+    char *postfix = intoPostfix(infix);
+
+    printf("%s ", postfix);
 }
