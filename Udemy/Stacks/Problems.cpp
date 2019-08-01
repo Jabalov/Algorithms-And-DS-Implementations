@@ -116,12 +116,42 @@ int isMatched(char *exp)
         return 0;
 }
 
+int evalPostfix(char *postfix)
+{
+    int x1, x2, r, i;
+    x1 = x2 = r = i = 0;
+
+    for (; postfix[i] != '\0'; i++)
+    {
+        if (isOperand(postfix[i]))
+            push(postfix[i] - '0');
+
+        else
+        {
+            x2 = pop(), x1 = pop();
+            switch (postfix[i])
+            {
+            case '+':
+                r = x1 + x2;
+                break;
+            case '-':
+                r = x1 - x2;
+                break;
+            case '*':
+                r = x1 * x2;
+                break;
+            case '/':
+                r = x1 / x2;
+                break;
+            }
+            push(r);
+        }
+    }
+    return top->data;
+}
+
 int main()
 {
-    char *infix = "a+b*c-d/e";
-    push(' ');
-
-    char *postfix = intoPostfix(infix);
-
-    printf("%s ", postfix);
+    char *postfix = "234*+82/-";
+    printf("Result is: %d\n", evalPostfix(postfix));
 }
