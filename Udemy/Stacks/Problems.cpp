@@ -39,6 +39,23 @@ char pop()
     return x;
 }
 
+int pre(char x)
+{
+    if (x == '+' || x == '-')
+        return 1;
+    else if (x == '*' || x == '/')
+        return 2;
+    return 0;
+}
+
+int isOperand(char x)
+{
+    if (x == '+' || x == '-' || x == '*' || x == '/')
+        return 0;
+    else
+        return 1;
+}
+
 void Display()
 {
     struct Node *p;
@@ -75,9 +92,4 @@ int isMatched(char *exp)
 
 int main()
 {
-    char *exp = "((a+b)*(c-d))";
-
-    printf("%d ", isMatched(exp));
-
-    return 0;
 }
