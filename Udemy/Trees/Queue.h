@@ -3,16 +3,13 @@
 
 struct Node
 {
-    struct Node *lchild;
     int data;
-    struct Node *rchild;
+    struct Node *lchild, *rchild;
 };
 
 struct Queue
 {
-    int size;
-    int front;
-    int rear;
+    int size, front, rear;
     struct Node **Q;
 };
 
