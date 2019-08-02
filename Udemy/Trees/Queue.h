@@ -15,6 +15,7 @@ struct Queue
     int rear;
     struct Node **Q;
 };
+
 void create(struct Queue *q, int size)
 {
     q->size = size;
@@ -33,6 +34,7 @@ void enqueue(struct Queue *q, struct Node *x)
         q->Q[q->rear] = x;
     }
 }
+
 struct Node *dequeue(struct Queue *q)
 {
     struct Node *x = NULL;
@@ -46,6 +48,7 @@ struct Node *dequeue(struct Queue *q)
     }
     return x;
 }
+
 int isEmpty(struct Queue q)
 {
     return q.front == q.rear;
