@@ -134,6 +134,13 @@ void levelOrder(struct Node *p)
     }
 }
 
+int count(struct Node *root)
+{
+    if (root)
+        return count(root->lchild) + count(root->rchild) + 1;
+    return 0;
+}
+
 int main()
 {
     treeCreate();
