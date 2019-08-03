@@ -114,11 +114,28 @@ void IinO(struct Node *p)
         }
 }
 
+void levelOrder(struct Node *p)
+{
+    struct Queue q;
+    create(&q, 100);
+
+    printf("%d \n", root->data);
+    enqueue(&q, root);
+
+    while (!isEmpty(q))
+    {
+        p = dequeue(&q);
+
+        if (p->lchild)
+            printf("%d ", p->lchild->data), enqueue(&q, p->lchild);
+
+        if (p->rchild)
+            printf("%d ", p->rchild->data), enqueue(&q, p->rchild);
+    }
+}
+
 int main()
 {
     treeCreate();
-
-    IpreO(root);
-    IinO(root);
-    return 0;
+    levelOrder(root);
 }
