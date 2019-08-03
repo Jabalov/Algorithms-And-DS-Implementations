@@ -47,3 +47,33 @@ void treeCreate()
         }
     }
 }
+
+void preO(struct Node *p)
+{
+    if (p)
+    {
+        printf("%d ", p->data);
+        preO(p->lchild);
+        preO(p->rchild);
+    }
+}
+
+void inO(struct Node *p)
+{
+    if (p)
+    {
+        inO(p->lchild);
+        printf("%d ", p->data);
+        inO(p->rchild);
+    }
+}
+
+void postO(struct Node *p)
+{
+    if (p)
+    {
+        postO(p->lchild);
+        postO(p->rchild);
+        printf("%d ", p->data);
+    }
+}
