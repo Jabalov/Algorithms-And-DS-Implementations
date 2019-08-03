@@ -97,12 +97,28 @@ void IpreO(struct Node *p)
         }
 }
 
+void IinO(struct Node *p)
+{
+    struct Stack stk;
+    stackCreate(&stk, 100);
+
+    while (p || !isEmptyStack(stk))
+        if (p)
+            push(&stk, p), p = p->lchild;
+
+        else
+        {
+            p = pop(&stk);
+            printf("%d ", p->data);
+            p = p->rchild;
+        }
+}
+
 int main()
 {
     treeCreate();
-    preO(root);
-    printf("\nPost Order ");
-    postO(root);
 
+    IpreO(root);
+    IinO(root);
     return 0;
 }
