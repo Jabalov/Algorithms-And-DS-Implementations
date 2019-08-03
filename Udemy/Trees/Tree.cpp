@@ -78,6 +78,25 @@ void postO(struct Node *p)
     }
 }
 
+void IpreO(struct Node *p)
+{
+    struct Stack stk;
+    stackCreate(&stk, 100);
+
+    while (p || !isEmptyStack(stk))
+        if (p)
+        {
+            printf("%d ", p->data);
+            push(&stk, p);
+            p = p->lchild;
+        }
+        else
+        {
+            p = pop(&stk);
+            p = p->rchild;
+        }
+}
+
 int main()
 {
     treeCreate();
