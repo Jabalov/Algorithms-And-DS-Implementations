@@ -3,7 +3,7 @@
 
 class Node
 {
-private:
+public:
     int data;
     struct Node *lchild, *rchild;
 };
@@ -12,7 +12,7 @@ class Queue
 {
 private:
     int size, front, rear;
-    struct Node **Q;
+    Node **Q;
 
 public:
     Queue(int size);
