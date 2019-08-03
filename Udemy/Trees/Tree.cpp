@@ -21,6 +21,7 @@ void treeCreate()
     while (!isEmpty(q))
     {
         p = dequeue(&q);
+
         printf("enter the left child of: %d\n ", p->data);
         scanf("%d", &x);
 
