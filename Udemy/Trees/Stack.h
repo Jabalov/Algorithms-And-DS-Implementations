@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "Query.h"
 struct Node
 {
     int data;
@@ -13,10 +13,9 @@ struct Stack
     struct Node **s;
 };
 
-void create(struct Stack *s, int x)
+void stackCreate(struct Stack *s, int x)
 {
     s->size = x;
-
     s->top = -1;
     s->s = (struct Node **)malloc(s->size * sizeof(struct Node *));
 }
@@ -37,9 +36,9 @@ void push(struct Stack *s, struct Node *x)
         s->top++, s->s[s->top] = x;
 }
 
-int pop(struct Stack *s)
+struct Node *pop(struct Stack *s)
 {
-    int x = -1;
+    struct Node *x = NULL;
     if (s->top == -1)
         printf("Stack Underflow\n");
     else
@@ -57,7 +56,7 @@ int peek(struct Stack s, int index)
     return x;
 }
 
-int isEmpty(struct Stack s)
+int isEmptyStack(struct Stack s)
 {
     return (s.top == -1);
 }
@@ -65,11 +64,4 @@ int isEmpty(struct Stack s)
 int isFull(struct Stack s)
 {
     return s.top == s.size - 1;
-}
-
-int stackTop(struct Stack s)
-{
-    if (!isEmpty(s))
-        return s.s[s.top];
-    return -1;
 }
