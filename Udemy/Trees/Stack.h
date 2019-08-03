@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct Node
+{
+    int data;
+    struct Node *lchild, *rchild;
+};
+
 struct Stack
 {
-    int size, top, *s;
+    int size, top;
+    struct Node **s;
 };
 
 void create(struct Stack *s, int x)
@@ -11,7 +18,7 @@ void create(struct Stack *s, int x)
     s->size = x;
 
     s->top = -1;
-    s->s = (int *)malloc(s->size * sizeof(int));
+    s->s = (struct Node **)malloc(s->size * sizeof(struct Node *));
 }
 
 void display(struct Stack s)
@@ -22,7 +29,7 @@ void display(struct Stack s)
     printf("\n");
 }
 
-void push(struct Stack *s, int x)
+void push(struct Stack *s, struct Node *x)
 {
     if (s->top == s->size - 1)
         printf("Stack overflow\n");
