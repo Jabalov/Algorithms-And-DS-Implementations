@@ -1,58 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node
+class Node
 {
+private:
     int data;
-    struct Node *next;
+    struct Node *lchild, *rchild;
+};
 
-} *front = NULL, *rear = NULL;
-
-void enqueue(int x)
+class Queue
 {
-    struct Node *tmp = (struct Node *)malloc(sizeof(struct Node));
+private:
+    int size, front, rear;
+    struct Node **Q;
 
-    if (tmp == NULL)
+public:
+    Queue(int size);
+    void enqueue(Node *x);
+    Node *dequeue();
+    bool isEmpty();
+};
+
+Queue::Queue(int size)
+{
+    this->size = size;
+    this->front = this->rear = 0;
+    this->Q = (struct Node **)malloc(this->size * sizeof(struct Node *));
+}
+
+void Queue::enqueue(Node *x)
+{
+    if ((rear + 1) % size == front)
         printf("Queue is Full");
-
     else
     {
-        tmp->data = x;
-        tmp->next = NULL;
-
-        if (front == NULL)
-            front = rear = tmp;
-
-        else
-            rear->next = tmp, rear = tmp;
+        rear = (rear + 1) % size;
+        Q[rear] = x;
     }
 }
 
-void Display()
+Node *Queue::dequeue()
 {
-    struct Node *p = front;
-    while (p)
-    {
-        printf("%d ", p->data);
-        p = p->next;
-    }
-    printf("\n");
-}
+    struct Node *x = NULL;
 
-int dequeue()
-{
-    int x = -1;
-    struct Node *tmp;
-
-    if (front == NULL)
+    if (front == rear)
         printf("Queue is Empty\n");
-
     else
     {
-        x = front->data;
-        tmp = front;
-        front = front->next;
-        free(tmp);
+        front = (front + 1) % size;
+        x = Q[front];
     }
     return x;
+}
+
+bool Queue::isEmpty()
+{
+    return front == rear;
 }
