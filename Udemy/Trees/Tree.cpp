@@ -78,6 +78,8 @@ void postO(struct Node *p)
     }
 }
 
+
+
 int main()
 {
     treeCreate();
