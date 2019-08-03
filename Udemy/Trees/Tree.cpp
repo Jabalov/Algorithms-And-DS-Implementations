@@ -77,3 +77,13 @@ void postO(struct Node *p)
         printf("%d ", p->data);
     }
 }
+
+int main()
+{
+    treeCreate();
+    preO(root);
+    printf("\nPost Order ");
+    postO(root);
+
+    return 0;
+}
