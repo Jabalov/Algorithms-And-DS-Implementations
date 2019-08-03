@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include "Queue.h"
 
-struct Node
-{
-    int data;
-    struct Node *lchild, *rchild;
-};
-
 struct Stack
 {
     int size, top;
