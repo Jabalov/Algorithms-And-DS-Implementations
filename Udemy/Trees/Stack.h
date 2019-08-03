@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Query.h"
+#include "Queue.h"
+
 struct Node
 {
     int data;
@@ -18,14 +19,6 @@ void stackCreate(struct Stack *s, int x)
     s->size = x;
     s->top = -1;
     s->s = (struct Node **)malloc(s->size * sizeof(struct Node *));
-}
-
-void display(struct Stack s)
-{
-    int i = s.top;
-    for (; i >= 0; i--)
-        printf("%d ", s.s[i]);
-    printf("\n");
 }
 
 void push(struct Stack *s, struct Node *x)
@@ -47,21 +40,12 @@ struct Node *pop(struct Stack *s)
     return x;
 }
 
-int peek(struct Stack s, int index)
-{
-    int x = -1;
-    if (s.top - index + 1 < 0)
-        printf("Invalid Index \n");
-    x = s.s[s.top - index + 1];
-    return x;
-}
-
 int isEmptyStack(struct Stack s)
 {
     return (s.top == -1);
 }
 
-int isFull(struct Stack s)
+int isFullStack(struct Stack s)
 {
     return s.top == s.size - 1;
 }
