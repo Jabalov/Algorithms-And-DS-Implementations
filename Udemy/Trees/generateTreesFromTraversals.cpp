@@ -8,7 +8,7 @@ public:
     Node *lchild, *rchild;
 };
 
-int search(char arr[], int start, int end, char value)
+int search(char *arr, int start, int end, char value)
 {
     int i;
     for (i = start; i <= end; i++)
