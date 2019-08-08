@@ -105,7 +105,7 @@ struct Node *search(int x)
     return NULL;
 }
 
-struct Node *predecessor(struct Node *p)
+struct Node *inPredecessor(struct Node *p)
 {
     while (p && p->rchild != NULL)
         p = p->rchild;
@@ -113,7 +113,7 @@ struct Node *predecessor(struct Node *p)
     return p;
 }
 
-struct Node *successor(struct Node *p)
+struct Node *inSuccessor(struct Node *p)
 {
     while (p && p->lchild != NULL)
         p = p->lchild;
