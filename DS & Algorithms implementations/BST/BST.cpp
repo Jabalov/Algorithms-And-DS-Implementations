@@ -112,3 +112,11 @@ struct Node *predecessor(struct Node *p)
 
     return p;
 }
+
+struct Node *successor(struct Node *p)
+{
+    while (p && p->lchild != NULL)
+        p = p->lchild;
+
+    return p;
+}
