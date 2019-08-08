@@ -42,3 +42,25 @@ void insert(int val)
     else
         r->rchild = q;
 }
+
+struct Node *recursiveInsert(struct Node *p, int x)
+{
+    struct Node *tmp = NULL;
+
+    if (p == NULL)
+    {
+        tmp = (struct Node *)malloc(sizeof(struct Node));
+        tmp->data = x;
+        tmp->lchild = tmp->rchild = NULL;
+
+        return tmp;
+    }
+
+    if (x < p->data)
+        p->lchild = recursiveInsert(p->lchild, x);
+
+    else if (x > p->data)
+        p->rchild = recursiveInsert(p->rchild, x);
+
+    return p;
+}
