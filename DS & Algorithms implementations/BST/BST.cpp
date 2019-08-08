@@ -102,4 +102,13 @@ struct Node *search(int x)
         else
             tmp = tmp->lchild;
     }
+    return NULL;
+}
+
+struct Node *predecessor(struct Node *p)
+{
+    while (p && p->rchild != NULL)
+        p = p->rchild;
+
+    return p;
 }
