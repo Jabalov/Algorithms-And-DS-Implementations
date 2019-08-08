@@ -157,3 +157,30 @@ struct Node *del(struct Node *p, int x)
     }
     return p;
 }
+
+int main()
+{
+    struct Node *tmp;
+
+    root = recursiveInsert(root, 50);
+    recursiveInsert(root, 10);
+    recursiveInsert(root, 40);
+    recursiveInsert(root, 20);
+    recursiveInsert(root, 30);
+
+    inO(root);
+    printf("\n");
+
+    del(root, 50);
+
+    inO(root);
+    printf("\n");
+
+    tmp = search(20);
+    if (tmp != NULL)
+        printf("element %d is found\n", tmp->data);
+    else
+        printf("element is not found\n");
+
+    return 0;
+}
