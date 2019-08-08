@@ -76,3 +76,13 @@ int Height(struct Node *p)
 
     return x > y ? x + 1 : y + 1;
 }
+
+void inO(struct Node *p)
+{
+    if (p)
+    {
+        inO(p->lchild);
+        printf("%d ", p->data);
+        inO(p->rchild);
+    }
+}
