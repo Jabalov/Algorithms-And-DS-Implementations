@@ -120,3 +120,40 @@ struct Node *inSuccessor(struct Node *p)
 
     return p;
 }
+
+struct Node *del(struct Node *p, int x)
+{
+    if (p == NULL)
+        return NULL;
+
+    if (p->lchild == NULL && p->rchild == NULL)
+    {
+        if (p == root)
+            root = NULL;
+        free(p);
+        return NULL;
+    }
+
+    if (x < p->data)
+        p->lchild = del(p->lchild, x);
+    else if (x > p->data)
+        p->rchild = del(p->rchild, x);
+    else
+    {
+        struct Node *q;
+        if (Height(p->lchild) > Height(p->rchild))
+        {
+            q = inPredecessor(p->lchild);
+            p->data = q->data;
+            p->lchild = del(p->lchild, q->data);
+        }
+
+        else
+        {
+            q = inSuccessor(p->rchild);
+            p->data = q->data;
+            p->rchild = del(p->rchild, q->data);
+        }
+    }
+    return p;
+}
