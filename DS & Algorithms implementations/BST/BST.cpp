@@ -86,3 +86,20 @@ void inO(struct Node *p)
         inO(p->rchild);
     }
 }
+
+struct Node *search(int x)
+{
+    struct Node *tmp = root;
+
+    while (tmp != NULL)
+    {
+        if (x == tmp->data)
+            return tmp;
+
+        else if (x > tmp->data)
+            tmp = tmp->rchild;
+
+        else
+            tmp = tmp->lchild;
+    }
+}
