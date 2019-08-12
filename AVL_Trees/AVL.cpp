@@ -4,6 +4,8 @@
 
 struct Node
 {
-    struct Node *lchild, *rchild;
-    int data, bf;
+    struct Node *lchild;
+    int data;
+    int height;
+    struct Node *rchild;
 } *root = NULL;
