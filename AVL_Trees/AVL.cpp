@@ -218,3 +218,24 @@ struct Node *Search(int key)
     }
     return NULL;
 }
+
+int main()
+{
+    struct Node *temp;
+    Insert(30);
+    RInsert(root, 50);
+    RInsert(root, 40);
+    RInsert(root, 20);
+    RInsert(root, 10);
+    RInsert(root, 42);
+    RInsert(root, 46);
+    Inorder(root);
+    printf("\n");
+
+    temp = Search(2);
+    if (temp != NULL)
+        printf("element %d is found\n", temp->data);
+    else
+        printf("element is not found\n");
+    return 0;
+}
