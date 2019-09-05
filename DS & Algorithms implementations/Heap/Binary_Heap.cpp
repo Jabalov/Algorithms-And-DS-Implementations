@@ -96,20 +96,18 @@ public:
 
     void heapify_down(int idx)
     {
-        int child1 = left(idx);
-        int child2 = right(idx);
+        int child_idx1 = left(idx);
+        int child_idx2 = right(idx);
 
-        if (child1 >= 0 && child2 >= 0 && heap[child1] > heap[child2])
-        {
-            child1 = child2;
-        }
+        if (child_idx1 >= 0 && child_idx2 >= 0 && heap[child_idx1] > heap[child_idx2])
+            child_idx1 = child_idx2;
 
-        if (child1 > 0 && heap[idx] > heap[child1])
+        if (child_idx1 > 0 && heap[idx] > heap[child_idx1])
         {
             int temp = heap[idx];
-            heap[idx] = heap[child1];
-            heap[child1] = temp;
-            heapify_down(child1);
+            heap[idx] = heap[child_idx1];
+            heap[child_idx1] = temp;
+            heapify_down(child_idx1);
         }
     }
 };
