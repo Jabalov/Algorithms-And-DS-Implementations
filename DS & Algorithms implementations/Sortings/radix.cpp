@@ -60,7 +60,7 @@ int del(struct Node **p, int i)
     return x;
 }
 
-void set_it_null(struct Node **p)
+void set_null(struct Node **p)
 {
     for (int i = 0; i < 10; i++)
         p[i] = NULL;
@@ -68,13 +68,14 @@ void set_it_null(struct Node **p)
 
 void radix_sort(int A[], int n)
 {
-    int i, pass, k, j = 1, m = 0;
-    pass = no_of_digit(find_max(A, n));
+    int i, loop, k, j = 1, m = 0;
+    loop = no_of_digit(find_max(A, n));
 
     struct Node **radix;
     radix = new Node *[10];
-    set_it_null(radix);
-    for (i = 0; i < pass; i++)
+    set_null(radix);
+
+    for (i = 0; i < loop; i++)
     {
         for (k = 0; k < n; k++)
             insert(radix, A[k], j);
@@ -87,7 +88,7 @@ void radix_sort(int A[], int n)
             ++m;
         }
         j *= 10;
-        set_it_null(radix);
+        set_null(radix);
     }
 }
 
