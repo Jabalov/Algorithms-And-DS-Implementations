@@ -55,8 +55,7 @@ int main()
 {
     int A[] = {11, 13, 7, 12, 16, 9, 24, 5, 10, 3}, n = 10, i;
 
-    iterative_merge_sort(A, n);
-
+    recursive_merge_sort(A, 0, n);
     for (i = 0; i < 10; i++)
         printf("%d ", A[i]);
 }
