@@ -82,9 +82,8 @@ void radix_sort(int A[], int n)
         k = 0, m = 0;
         while (m < n)
         {
-            if (radix[m])
-                while (radix[m])
-                    A[k++] = del(radix, m);
+            while (radix[m])
+                A[k++] = del(radix, m);
             ++m;
         }
         j *= 10;
