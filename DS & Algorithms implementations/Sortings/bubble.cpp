@@ -27,7 +27,6 @@ void bubble(int A[], int n)
 void a_bit_faster_bubble(int A[], int n)
 {
     int i, j, flag = 0;
-
     for (i = 0; i < n - 1; i++)
     {
         flag = 0;
