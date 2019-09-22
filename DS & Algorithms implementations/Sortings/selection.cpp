@@ -11,15 +11,15 @@ void swap(int *x, int *y)
 
 void selection(int A[], int n)
 {
-    int i, j, tmp_i;
+    int i, j, pos;
     for (i = 0; i < n - 1; i++)
     {
-        tmp_i = i;
+        pos = i;
         for (j = i; j < n; j++)
-            if (A[j] < A[tmp_i])
-                tmp_i = j;
+            if (A[j] < A[pos])
+                pos = j;
 
-        swap(&A[i], &A[tmp_i]);
+        swap(&A[i], &A[pos]);
     }
 }
 
