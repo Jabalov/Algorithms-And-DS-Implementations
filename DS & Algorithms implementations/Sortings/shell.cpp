@@ -4,18 +4,18 @@ using namespace std;
 
 void shell_sort(int A[], int n)
 {
-    int i, j, gap, tmp;
+    int i, j, gap, x;
 
     for (gap = n / 2; gap >= 1; gap /= 2)
     {
         for (i = gap; i < n; i++)
         {
-            tmp = A[i];
+            x = A[i];
             j = i - gap;
-            while (j >= 0 && A[j] > tmp)
+            while (j >= 0 && A[j] > x)
                 A[j + gap] = A[j], j -= gap;
 
-            A[j + gap] = tmp;
+            A[j + gap] = x;
         }
     }
 }
