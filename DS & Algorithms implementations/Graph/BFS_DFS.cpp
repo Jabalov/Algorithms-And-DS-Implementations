@@ -4,24 +4,28 @@
 
 void bfs(int A[][7], int start, int n)
 {
-    int i = start, j;
+    int u = start, v;
     int visited[7] = {};
 
-    printf("%d", i);
-    visited[i] = 1;
-    enqueue(i);
+    printf("%d", u);
+    visited[u] = 1;
+    enqueue(u);
 
     while (!is_empty())
     {
-        i = dequeue();
-        for (j = 1; j < n; j++)
-            if (A[i][j] == 1 && visited[j] == 0)
+        u = dequeue();
+        for (v = 1; v < n; v++)
+            if (A[u][v] == 1 && visited[v] == 0)
             {
-                printf(" %d", j);
-                visited[j] = 1;
-                enqueue(j);
+                printf(" %d", v);
+                visited[v] = 1;
+                enqueue(v);
             }
     }
+}
+
+void dfs(int A[][7], int start, int n)
+{
 }
 
 int main()
