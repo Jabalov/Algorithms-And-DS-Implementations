@@ -26,6 +26,18 @@ void bfs(int A[][7], int start, int n)
 
 void dfs(int A[][7], int start, int n)
 {
+    static int visited[7] = {0};
+    int v;
+
+    if (visited[start] == 0)
+    {
+        printf("%d ", start);
+        visited[start] = 1;
+
+        for (v = 1; v < n; v++)
+            if (A[start][v] == 1 && visited[v] != 0)
+                dfs(A, v, n);
+    }
 }
 
 int main()
