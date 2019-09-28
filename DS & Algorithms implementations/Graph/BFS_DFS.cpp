@@ -29,7 +29,7 @@ void dfs(int A[][7], int start, int n)
     static int visited[7] = {0};
     int v;
 
-    if (visited[start] == 0)
+    if (!visited[start])
     {
         printf("%d ", start);
         visited[start] = 1;
