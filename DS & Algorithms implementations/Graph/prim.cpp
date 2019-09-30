@@ -57,10 +57,8 @@ int main()
         near[k] = 0;
 
         for (j = 1; j <= n; j++)
-        {
             if (near[j] != 0 && cost[j][k] < cost[j][near[j]])
                 near[j] = k;
-        }
     }
 
     for (i = 0; i < n - 1; i++)
