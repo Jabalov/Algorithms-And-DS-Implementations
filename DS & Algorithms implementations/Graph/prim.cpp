@@ -53,8 +53,7 @@ int main()
                 min = cost[j][near[j]];
             }
 
-        spanning_tree[0][i] = k;
-        spanning_tree[1][i] = near[k];
+        spanning_tree[0][i] = k, spanning_tree[1][i] = near[k];
         near[k] = 0;
 
         for (j = 1; j <= n; j++)
