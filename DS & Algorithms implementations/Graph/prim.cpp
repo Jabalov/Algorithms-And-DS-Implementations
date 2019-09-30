@@ -1,5 +1,5 @@
 #include <iostream>
-#define I INT_MAX
+#define I 3000000
 
 using namespace std;
 
