@@ -14,10 +14,9 @@ void insertion(int A[], int n)
     for (i = 1; i < n; i++)
     {
         j = i - 1;
-        // tmp_i = i;
         x = A[i];
         while (j >= 0 && A[j] > x)
-            A[j + 1] = A[j], j--; // swap(&A[tmp_i--], &A[j--]); without the line down there.
+            A[j + 1] = A[j], j--;
 
         A[j + 1] = x;
     }
