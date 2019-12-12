@@ -36,7 +36,7 @@ public:
         cout << "Element Deleted" << endl;
     }
 
-    int extractMin()
+    int returnMin()
     {
         if (heap.size() == 0)
             return -1;
@@ -111,3 +111,20 @@ public:
         }
     }
 };
+
+int main()
+{
+    binaryHeap pq;
+    pq.insert(10);
+    pq.insert(55);
+    pq.insert(4);
+    pq.insert(1);
+    pq.display();
+
+    cout << pq.returnMin() << "\n";
+    pq.deleteMin();
+    pq.display();
+
+    pq.insert(-2);
+    pq.display();
+}
