@@ -31,7 +31,7 @@ long long get_fibonacci_last_digit_fast(long long n)
     for (long long i = 2; i <= n; i++)
         list[i] = (list[i - 1] + list[i - 2]) % 10;
 
-    return list[n] % 10;
+    return list[n];
 }
 
 int main()
