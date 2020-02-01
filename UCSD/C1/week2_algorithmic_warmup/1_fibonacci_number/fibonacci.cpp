@@ -26,6 +26,9 @@ long long fibonacci_naive(long long n)
 long long fib[46];
 long long fibonacci_fast(long long n)
 {
+    fib[0] = 0, fib[1] = 1;
+    for (long long i = 2; i < 46; i++)
+        fib[i] = fib[i - 1] + fib[i - 2];
     return fib[n];
 }
 
@@ -41,13 +44,6 @@ int main()
 {
     long long n = 0;
     cin >> n;
-
-    fib[0] = 0, fib[1] = 1;
-    for (long long i = 2; i < 46; i++)
-        fib[i] = fib[i - 1] + fib[i - 2];
-
-    //cout << fibonacci_naive(n) << '\n';
-    test_solution();
     cout << fibonacci_fast(n) << '\n';
     return 0;
 }

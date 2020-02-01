@@ -9,18 +9,18 @@ int gcd_naive(int a, int b)
       if (d > current_gcd)
         current_gcd = d;
 
-    return current_gcd;
+  return current_gcd;
 }
 
 int gcd_fast(int a, int b)
 {
-  return a % b == 0 ? b : gcd_fast(b % a, a);
+  return a % b == 0 ? b : gcd_fast(b, a % b);
 }
 
 int main()
 {
   int a, b;
   cin >> a >> b;
-  cout << gcd_naive(a, b) << endl;
+  cout << gcd_fast(a, b) << endl;
   return 0;
 }
