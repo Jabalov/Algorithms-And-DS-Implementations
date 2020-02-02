@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
+using namespace std;
+#define vi vector<int>
 
-using std::vector;
-
-double get_optimal_value(int capacity, vector<int> weights, vector<int> values) {
+double get_optimal_value(int capacity, vi weights, vi values)
+{
   double value = 0.0;
 
   // write your code here
@@ -11,19 +13,21 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   return value;
 }
 
-int main() {
+int main()
+{
   int n;
   int capacity;
-  std::cin >> n >> capacity;
-  vector<int> values(n);
-  vector<int> weights(n);
-  for (int i = 0; i < n; i++) {
-    std::cin >> values[i] >> weights[i];
+  cin >> n >> capacity;
+  vi values(n);
+  vi weights(n);
+  for (int i = 0; i < n; i++)
+  {
+    cin >> values[i] >> weights[i];
   }
 
   double optimal_value = get_optimal_value(capacity, weights, values);
 
-  std::cout.precision(10);
-  std::cout << optimal_value << std::endl;
+  cout.precision(10);
+  cout << optimal_value << endl;
   return 0;
 }
