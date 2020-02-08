@@ -9,12 +9,10 @@ ll get_change(ll m)
   ll cnt = 0, idx = 0;
 
   while (m != 0)
-  {
     if ((ll)m / change[idx])
       m -= change[idx], cnt++;
     else
       (idx++) % 3;
-  }
 
   return cnt;
 }
