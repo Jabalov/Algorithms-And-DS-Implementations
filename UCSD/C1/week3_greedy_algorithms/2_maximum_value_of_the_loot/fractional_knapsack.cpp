@@ -21,9 +21,7 @@ int main()
   vi values(n);
   vi weights(n);
   for (int i = 0; i < n; i++)
-  {
     cin >> values[i] >> weights[i];
-  }
 
   double optimal_value = get_optimal_value(capacity, weights, values);
 
