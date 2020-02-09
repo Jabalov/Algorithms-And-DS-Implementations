@@ -1,29 +1,48 @@
-#include <algorithm>
-#include <sstream>
 #include <iostream>
 #include <vector>
-#include <string>
+#include <iomanip>
+#include <map>
+#include <algorithm>
 
-using std::vector;
-using std::string;
+using namespace std;
+#define vi vector<int>
+#define ll long long
 
-string largest_number(vector<string> a) {
+bool comparison(string a, string b)
+{
+  stringstream ret;
+  int tmp1, tmp2;
+
+  ret << a, ret << b, ret >> tmp1;
+
+  ret.clear();
+
+  ret << b, ret << a, ret >> tmp2;
+
+  return tmp1 > tmp2;
+}
+
+string largest_number(vector<string> a)
+{
   //write your code here
-  std::stringstream ret;
-  for (size_t i = 0; i < a.size(); i++) {
+  stringstream ret;
+  sort(a.begin(), a.end(), comparison);
+  for (size_t i = 0; i < a.size(); i++)
     ret << a[i];
-  }
+
   string result;
   ret >> result;
   return result;
 }
 
-int main() {
+int main()
+{
   int n;
-  std::cin >> n;
+  cin >> n;
   vector<string> a(n);
-  for (size_t i = 0; i < a.size(); i++) {
-    std::cin >> a[i];
-  }
-  std::cout << largest_number(a);
+
+  for (size_t i = 0; i < a.size(); i++)
+    cin >> a[i];
+
+  cout << largest_number(a);
 }

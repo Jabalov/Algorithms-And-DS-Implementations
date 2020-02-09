@@ -1,34 +1,54 @@
-#include <algorithm>
 #include <iostream>
-#include <climits>
 #include <vector>
+#include <iomanip>
+#include <map>
+#include <algorithm>
 
+using namespace std;
 using std::vector;
+#define vi vector<int>
+#define ll long long
 
-struct Segment {
+struct Segment
+{
   int start, end;
 };
 
-vector<int> optimal_points(vector<Segment> &segments) {
-  vector<int> points;
+bool sort_order(Segment i, Segment j)
+{
+  return i.end < j.end;
+}
+
+vi optimal_points(vector<Segment> &segments)
+{
+  vi points;
+  sort(segments.begin(), segments.end(), sort_order);
+
   //write your code here
-  for (size_t i = 0; i < segments.size(); ++i) {
-    points.push_back(segments[i].start);
-    points.push_back(segments[i].end);
+  ll point = segments[0].end;
+  points.push_back(point);
+
+  for (int i = 1; i < segments.size(); i++)
+  {
+    if (segments[i].start > point || segments[i].end < point)
+      point = segments[i].end, points.push_back(point);
   }
+
   return points;
 }
 
-int main() {
+int main()
+{
   int n;
-  std::cin >> n;
+  cin >> n;
   vector<Segment> segments(n);
-  for (size_t i = 0; i < segments.size(); ++i) {
-    std::cin >> segments[i].start >> segments[i].end;
-  }
-  vector<int> points = optimal_points(segments);
-  std::cout << points.size() << "\n";
-  for (size_t i = 0; i < points.size(); ++i) {
-    std::cout << points[i] << " ";
-  }
+
+  for (size_t i = 0; i < segments.size(); ++i)
+    cin >> segments[i].start >> segments[i].end;
+
+  vi points = optimal_points(segments);
+  cout << points.size() << "\n";
+
+  for (size_t i = 0; i < points.size(); ++i)
+    cout << points[i] << " ";
 }
