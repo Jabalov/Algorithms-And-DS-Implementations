@@ -8,6 +8,7 @@ using namespace std;
 int binary_search(const vi &a, int x)
 {
   int left = 0, right = (int)a.size() - 1, mid;
+
   while (left <= right)
   {
     mid = (left + right) >> 1;
