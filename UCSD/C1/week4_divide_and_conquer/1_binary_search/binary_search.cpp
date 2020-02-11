@@ -8,7 +8,7 @@ using namespace std;
 int binary_search(const vi &a, int x)
 {
   int left = 0, right = (int)a.size() - 1, mid;
-  while (left < right)
+  while (left <= right)
   {
     mid = (left + right) >> 1;
 
@@ -21,8 +21,18 @@ int binary_search(const vi &a, int x)
     else
       left = mid + 1;
   }
-
   return -1;
+}
+
+int recursive_linear_search(const vi &a, int x, int low, int high)
+{
+  if (low > high)
+    return -1;
+
+  if (a[low] == x)
+    return low;
+  else
+    recursive_linear_search(a, x, low + 1, high);
 }
 
 int linear_search(const vi &a, int x)
