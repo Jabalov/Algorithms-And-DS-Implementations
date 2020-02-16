@@ -26,6 +26,7 @@ int no_of_digit(int n)
     }
     return count;
 }
+
 void insert(struct Node **p, int x, int j)
 {
     int pos = (x / j) % 10;

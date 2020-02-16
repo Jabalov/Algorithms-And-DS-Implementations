@@ -15,6 +15,7 @@ void insert(struct Node **p, int x)
         p[x]->data = x;
         p[x]->next = NULL;
     }
+
     else
     {
         struct Node *q, *temp;
