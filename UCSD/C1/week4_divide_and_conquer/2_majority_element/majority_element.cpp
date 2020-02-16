@@ -64,5 +64,5 @@ int main()
   for (size_t i = 0; i < a.size(); ++i)
     cin >> a[i];
 
-  cout << (get_majority_element_rcs(a, 0, a.size()) != -1) << '\n';
+  cout << (get_majority_element_itr(a, 0, a.size()) != -1) << '\n';
 }
