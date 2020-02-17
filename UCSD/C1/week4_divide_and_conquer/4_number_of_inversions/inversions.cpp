@@ -1,29 +1,65 @@
 #include <iostream>
+#include <cassert>
 #include <vector>
+#include <map>
+#include <iostream>
+#include <cstdlib>
 
-using std::vector;
+#define vi vector<int>
+#define ll long long
+using namespace std;
 
-long long get_number_of_inversions(vector<int> &a, vector<int> &b, size_t left, size_t right)
+ll merge(vi &a, vi &tmp, int left, int mid, int right)
 {
-  long long number_of_inversions = 0;
+  int i, j, k;
+  int cnt = 0;
+
+  i = left;
+  j = mid;
+  k = left;
+  while ((i <= mid - 1) && (j <= right))
+  {
+    if (a[i] <= a[j])
+      tmp[k++] = a[i++];
+
+    else
+      tmp[k++] = a[j++], cnt += (mid - i);
+  }
+
+  while (i <= mid - 1)
+    tmp[k++] = a[i++];
+
+  while (j <= right)
+    tmp[k++] = a[j++];
+
+  for (i = left; i <= right; i++)
+    a[i] = tmp[i];
+
+  return cnt;
+}
+
+ll get_number_of_inversions(vi &a, vi &b, size_t left, size_t right)
+{
+  ll num = 0;
   if (right <= left + 1)
-    return number_of_inversions;
+    return num;
+
   size_t ave = left + (right - left) / 2;
-  number_of_inversions += get_number_of_inversions(a, b, left, ave);
-  number_of_inversions += get_number_of_inversions(a, b, ave, right);
-  //write your code here
-  return number_of_inversions;
+  num += get_number_of_inversions(a, b, left, ave);
+  num += get_number_of_inversions(a, b, ave + 1, right);
+  num += merge(a, b, left, ave + 1, right);
+
+  return num;
 }
 
 int main()
 {
   int n;
-  std::cin >> n;
-  vector<int> a(n);
+  cin >> n;
+  vi a(n);
   for (size_t i = 0; i < a.size(); i++)
-  {
-    std::cin >> a[i];
-  }
-  vector<int> b(a.size());
-  std::cout << get_number_of_inversions(a, b, 0, a.size()) << '\n';
+    cin >> a[i];
+
+  vi b(a.size());
+  cout << get_number_of_inversions(a, b, 0, a.size()) << '\n';
 }
