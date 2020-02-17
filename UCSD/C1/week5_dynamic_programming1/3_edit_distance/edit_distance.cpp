@@ -1,17 +1,25 @@
 #include <iostream>
-#include <string>
+#include <cassert>
+#include <vector>
+#include <map>
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
 
-using std::string;
+#define vi vector<int>
+#define ll long long
+using namespace std;
 
-int edit_distance(const string &str1, const string &str2) {
-  //write your code here
+int edit_distance(const string &str1, const string &str2)
+{
   return 0;
 }
 
-int main() {
+int main()
+{
   string str1;
   string str2;
-  std::cin >> str1 >> str2;
-  std::cout << edit_distance(str1, str2) << std::endl;
+  cin >> str1 >> str2;
+  cout << edit_distance(str1, str2) << endl;
   return 0;
 }
