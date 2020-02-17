@@ -9,7 +9,7 @@
 #define ll long long
 using namespace std;
 
-ll merge(vi &a, vi &tmp, int left, int mid, int right)
+ll merge(vi &a, vi &b, int left, int mid, int right)
 {
   int i, j, k;
   int cnt = 0;
@@ -17,23 +17,24 @@ ll merge(vi &a, vi &tmp, int left, int mid, int right)
   i = left;
   j = mid;
   k = left;
+
   while ((i <= mid - 1) && (j <= right))
   {
     if (a[i] <= a[j])
-      tmp[k++] = a[i++];
+      b[k++] = a[i++];
 
     else
-      tmp[k++] = a[j++], cnt += (mid - i);
+      b[k++] = a[j++], cnt += (mid - i);
   }
 
   while (i <= mid - 1)
-    tmp[k++] = a[i++];
+    b[k++] = a[i++];
 
   while (j <= right)
-    tmp[k++] = a[j++];
+    b[k++] = a[j++];
 
   for (i = left; i <= right; i++)
-    a[i] = tmp[i];
+    a[i] = b[i];
 
   return cnt;
 }
