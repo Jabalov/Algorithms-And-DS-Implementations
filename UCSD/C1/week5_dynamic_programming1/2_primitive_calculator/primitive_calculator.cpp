@@ -29,17 +29,53 @@ vi optimal_sequence(int n)
   return sequence;
 }
 
-vi optimal_sequence_dp(int n)
+vi optimal_sequence_dp(int input_number)
 {
+  vi seq;
+  vi num_ops(input_number + 1, 10e3);
+  num_ops[0] = 0;
+
+  for (int m = 1; m <= input_number; m++)
+  {
+    int current = num_ops[m - 1] + 1;
+
+    if (m % 2 == 0)
+      current = min(current, num_ops[m / 2] + 1);
+
+    if (m % 3 == 0)
+      current = min(current, num_ops[m / 3] + 1);
+
+    if (current < num_ops[m])
+      num_ops[m] = current;
+  }
+
+  int n = input_number;
+
+  while (n > 0)
+  {
+    seq.push_back(n);
+    if (num_ops[n - 1] == num_ops[n] - 1)
+      n -= 1;
+
+    else if ((n % 2 == 0) && (num_ops[n / 2] == num_ops[n] - 1))
+      n /= 2;
+
+    else if ((n % 3 == 0) && (num_ops[n / 3] == num_ops[n] - 1))
+      n /= 3;
+  }
+
+  reverse(seq.begin(), seq.end());
+  return seq;
 }
 
 int main()
 {
   int n;
   cin >> n;
-  vi sequence = optimal_sequence(n);
-  cout << sequence.size() - 1 << endl;
+  vi seq = optimal_sequence_dp(n);
 
-  for (size_t i = 0; i < sequence.size(); ++i)
-    cout << sequence[i] << " ";
+  cout << seq.size() - 1 << endl;
+
+  for (size_t i = 0; i < seq.size(); ++i)
+    cout << seq[i] << " ";
 }
