@@ -1,19 +1,31 @@
 #include <iostream>
+#include <cassert>
 #include <vector>
+#include <map>
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
+#include <string>
 
-using std::vector;
+#define vi vector<int>
+#define vii vector<vector<int>>
+#define viii vector<vector<vector<int>>>
+#define ll long long
+using namespace std;
 
-int partition3(vector<int> &A) {
-  //write your code here
+int partition3(vi &A)
+{
+
   return 0;
 }
 
-int main() {
+int main()
+{
   int n;
-  std::cin >> n;
-  vector<int> A(n);
-  for (size_t i = 0; i < A.size(); ++i) {
-    std::cin >> A[i];
-  }
-  std::cout << partition3(A) << '\n';
+  cin >> n;
+  vi A(n);
+  for (size_t i = 0; i < A.size(); ++i)
+    cin >> A[i];
+
+  cout << partition3(A) << '\n';
 }

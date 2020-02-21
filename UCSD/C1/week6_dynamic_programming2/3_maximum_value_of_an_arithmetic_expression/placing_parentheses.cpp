@@ -1,32 +1,46 @@
 #include <iostream>
 #include <cassert>
-#include <string>
 #include <vector>
+#include <map>
+#include <iostream>
+#include <algorithm>
+#include <cstdlib>
+#include <string>
 
-using std::vector;
-using std::string;
-using std::max;
-using std::min;
+#define vi vector<int>
+#define vii vector<vector<int>>
+#define viii vector<vector<vector<int>>>
+#define ll long long
+using namespace std;
 
-long long eval(long long a, long long b, char op) {
-  if (op == '*') {
+ll eval(ll a, ll b, char op)
+{
+  if (op == '*')
+  {
     return a * b;
-  } else if (op == '+') {
+  }
+  else if (op == '+')
+  {
     return a + b;
-  } else if (op == '-') {
+  }
+  else if (op == '-')
+  {
     return a - b;
-  } else {
+  }
+  else
+  {
     assert(0);
   }
 }
 
-long long get_maximum_value(const string &exp) {
-  //write your code here
+ll get_maximum_value(const string &exp)
+{
   return 0;
 }
 
-int main() {
+int main()
+{
   string s;
-  std::cin >> s;
-  std::cout << get_maximum_value(s) << '\n';
+  cin >> s;
+  cout << get_maximum_value(s) << '\n';
 }
