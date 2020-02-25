@@ -1,14 +1,17 @@
 #include <iostream>
 #include <stack>
 #include <string>
+using namespace std;
 
-struct Bracket {
-    Bracket(char type, int position):
-        type(type),
-        position(position)
-    {}
+struct Bracket
+{
+    Bracket(char type, int position) : type(type),
+                                       position(position)
+    {
+    }
 
-    bool Matchc(char c) {
+    bool Matchc(char c)
+    {
         if (type == '[' && c == ']')
             return true;
         if (type == '{' && c == '}')
@@ -22,19 +25,23 @@ struct Bracket {
     int position;
 };
 
-int main() {
-    std::string text;
-    getline(std::cin, text);
+int main()
+{
+    string text;
+    getline(cin, text);
 
-    std::stack <Bracket> opening_brackets_stack;
-    for (int position = 0; position < text.length(); ++position) {
+    stack<Bracket> opening_brackets_stack;
+    for (int position = 0; position < text.length(); ++position)
+    {
         char next = text[position];
 
-        if (next == '(' || next == '[' || next == '{') {
+        if (next == '(' || next == '[' || next == '{')
+        {
             // Process opening bracket, write your code here
         }
 
-        if (next == ')' || next == ']' || next == '}') {
+        if (next == ')' || next == ']' || next == '}')
+        {
             // Process closing bracket, write your code here
         }
     }
