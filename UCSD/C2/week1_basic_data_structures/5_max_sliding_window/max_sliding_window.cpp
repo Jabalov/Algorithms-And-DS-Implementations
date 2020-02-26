@@ -1,10 +1,7 @@
 #include <iostream>
 #include <vector>
 
-using std::cin;
-using std::cout;
-using std::max;
-using std::vector;
+using namespace std;
 
 void max_sliding_window_naive(vector<int> const &A, int w)
 {

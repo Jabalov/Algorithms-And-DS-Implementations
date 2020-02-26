@@ -36,17 +36,23 @@ int main()
         char next = text[position];
 
         if (next == '(' || next == '[' || next == '{')
-        {
-            // Process opening bracket, write your code here
-        }
+            opening_brackets_stack.push(Bracket(next, position));
 
         if (next == ')' || next == ']' || next == '}')
         {
-            // Process closing bracket, write your code here
+            if (opening_brackets_stack.empty())
+                return cout << position + 1, 0;
+
+            if (!opening_brackets_stack.top().Matchc(next))
+                return cout << position + 1, 0;
+
+            opening_brackets_stack.pop();
         }
     }
 
-    // Printing answer, write your code here
+    if (opening_brackets_stack.empty())
+        return cout << "Success", 0;
 
-    return 0;
+    else
+        return cout << opening_brackets_stack.top().position + 1, 0;
 }

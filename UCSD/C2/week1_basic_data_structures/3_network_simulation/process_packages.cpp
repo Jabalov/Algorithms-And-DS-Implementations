@@ -5,8 +5,7 @@ using namespace std;
 
 struct Request
 {
-    Request(int arrival_time, int process_time) : arrival_time(arrival_time),
-                                                  process_time(process_time)
+    Request(int arrival_time, int process_time) : arrival_time(arrival_time), process_time(process_time)
     {
     }
 
@@ -16,8 +15,7 @@ struct Request
 
 struct Response
 {
-    Response(bool dropped, int start_time) : dropped(dropped),
-                                             start_time(start_time)
+    Response(bool dropped, int start_time) : dropped(dropped), start_time(start_time)
     {
     }
 
@@ -28,14 +26,32 @@ struct Response
 class Buffer
 {
 public:
-    Buffer(int size) : size_(size),
-                       finish_time_()
+    Buffer(int size) : size_(size), finish_time_()
     {
     }
 
     Response Process(const Request &request)
     {
-        // write your code here
+        while (!finish_time_.empty() && finish_time_.front() <= request.arrival_time)
+            finish_time_.pop();
+
+        if (finish_time_.size() < size_)
+        {
+            int request_finish_time = 0, request_start_time = 0;
+
+            if (!finish_time_.empty())
+                request_finish_time = finish_time_.back() + request.process_time;
+
+            else
+                request_finish_time = request.arrival_time + request.process_time;
+
+            finish_time_.push(request_finish_time);
+            request_start_time = finish_time_.back() - request.process_time;
+
+            return Response(false, request_start_time);
+        }
+
+        return Response(true, request.process_time);
     }
 
 private:
