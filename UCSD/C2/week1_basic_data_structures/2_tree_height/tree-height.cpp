@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <queue>
 #if defined(__unix__) || defined(__APPLE__)
 #include <sys/resource.h>
 #endif
@@ -33,7 +34,9 @@ int main_with_large_stack_space()
   cin >> n;
 
   vector<Node> nodes;
+  int root = 0;
   nodes.resize(n);
+
   for (int child_index = 0; child_index < n; child_index++)
   {
     int parent_index;
@@ -43,7 +46,31 @@ int main_with_large_stack_space()
       nodes[child_index].setParent(&nodes[parent_index]);
 
     nodes[child_index].key = child_index;
+
+    if (parent_index == -1)
+      root = child_index;
   }
+
+  Node *parent = &nodes[root];
+  queue<Node *> q;
+  int height = 0;
+  q.push(parent);
+
+  while (!q.empty())
+  {
+    int n = q.size();
+    for (int i = 0; i < n; i++)
+    {
+      Node *front = q.front();
+      for (auto child : front->children)
+        q.push(child);
+
+      q.pop();
+    }
+    height++;
+  }
+
+  cout << height << endl;
 }
 
 int main(int argc, char **argv)
