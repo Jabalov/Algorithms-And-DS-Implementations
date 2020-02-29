@@ -1,71 +1,58 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <math.h>
+using namespace std;
+#define ll long long
 
-using std::cin;
-using std::cout;
-using std::vector;
-
-class JobQueue
+void heapify_down(vector<pair<int, ll>> &w_, int i)
 {
-private:
-  int num_workers_;
-  vector<int> jobs_;
 
-  vector<int> assigned_workers_;
-  vector<long long> start_times_;
+  int idx = i;
+  int l = 2 * i + 1, r = 2 * i + 2;
 
-  void WriteResponse() const
+  if (l < w_.size() && w_[l].second < w_[idx].second)
+    idx = l;
+
+  if (r < w_.size() && w_[r].second < w_[idx].second)
+    idx = r;
+
+  if (l < w_.size() && w_[l].second == w_[idx].second)
+    if (w_[l].first < w_[idx].first)
+      idx = l;
+
+  if (r < w_.size() && w_[r].second == w_[idx].second)
+    if (w_[r].first < w_[idx].first)
+      idx = r;
+
+  if (i != idx)
   {
-    for (int i = 0; i < jobs_.size(); ++i)
-    {
-      cout << assigned_workers_[i] << " " << start_times_[i] << "\n";
-    }
+    swap(w_[i], w_[idx]);
+    heapify_down(w_, idx);
   }
-
-  void ReadData()
-  {
-    int m;
-    cin >> num_workers_ >> m;
-    jobs_.resize(m);
-    for (int i = 0; i < m; ++i)
-      cin >> jobs_[i];
-  }
-
-  void AssignJobs()
-  {
-    // TODO: replace this code with a faster algorithm.
-    assigned_workers_.resize(jobs_.size());
-    start_times_.resize(jobs_.size());
-    vector<long long> next_free_time(num_workers_, 0);
-    for (int i = 0; i < jobs_.size(); ++i)
-    {
-      int duration = jobs_[i];
-      int next_worker = 0;
-      for (int j = 0; j < num_workers_; ++j)
-      {
-        if (next_free_time[j] < next_free_time[next_worker])
-          next_worker = j;
-      }
-      assigned_workers_[i] = next_worker;
-      start_times_[i] = next_free_time[next_worker];
-      next_free_time[next_worker] += duration;
-    }
-  }
-
-public:
-  void Solve()
-  {
-    ReadData();
-    AssignJobs();
-    WriteResponse();
-  }
-};
+}
 
 int main()
 {
-  std::ios_base::sync_with_stdio(false);
-  JobQueue job_queue;
-  job_queue.Solve();
+
+  int n, m;
+  cin >> n >> m;
+  vector<pair<int, long long>> w_(n);
+
+  for (int i = 0; i < n; i++)
+    w_[i].first = i, w_[i].second = 0;
+
+  vector<int> t_(m);
+  for (int i = 0; i < m; i++)
+    cin >> t_[i];
+
+  for (int i = 0; i < m; i++)
+  {
+    cout << w_[0].first << " " << w_[0].second << endl;
+
+    w_[0].second += (long long)t_[i];
+    heapify_down(w_, 0);
+  }
+
   return 0;
 }
