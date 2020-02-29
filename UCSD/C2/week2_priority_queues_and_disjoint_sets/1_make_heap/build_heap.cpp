@@ -2,15 +2,11 @@
 #include <vector>
 #include <algorithm>
 
-using std::cin;
-using std::cout;
-using std::make_pair;
-using std::pair;
-using std::swap;
-using std::vector;
+using namespace std;
 
 class HeapBuilder
 {
+
 private:
   vector<int> data_;
   vector<pair<int, int>> swaps_;
@@ -19,9 +15,7 @@ private:
   {
     cout << swaps_.size() << "\n";
     for (int i = 0; i < swaps_.size(); ++i)
-    {
       cout << swaps_[i].first << " " << swaps_[i].second << "\n";
-    }
   }
 
   void ReadData()
@@ -33,25 +27,58 @@ private:
       cin >> data_[i];
   }
 
+  int left(int p)
+  {
+    int left = 2 * p + 1;
+    if (left < data_.size())
+      return left;
+    else
+      return -1;
+  }
+
+  int right(int p)
+  {
+    int right = 2 * p + 2;
+    if (right < data_.size())
+      return right;
+    else
+      return -1;
+  }
+
+  int parent(int child)
+  {
+    if (child == 0)
+      return -1;
+
+    int p = (child - 1) / 2;
+    return p;
+  }
+
+  void down(int i)
+  {
+    int idx = i;
+    int l = left(i), r = right(i);
+
+    if (l <= data_.size() - 1 && data_[l] < data_[idx])
+      idx = l;
+
+    if (r <= data_.size() - 1 && data_[r] < data_[idx])
+      idx = r;
+
+    if (i != idx)
+    {
+      swap(data_[i], data_[idx]);
+      swaps_.push_back(make_pair(i, idx));
+      down(idx);
+    }
+  }
+
   void GenerateSwaps()
   {
     swaps_.clear();
-    // The following naive implementation just sorts
-    // the given sequence using selection sort algorithm
-    // and saves the resulting sequence of swaps.
-    // This turns the given array into a heap,
-    // but in the worst case gives a quadratic number of swaps.
-    //
-    // TODO: replace by a more efficient implementation
-    for (int i = 0; i < data_.size(); ++i)
-      for (int j = i + 1; j < data_.size(); ++j)
-      {
-        if (data_[i] > data_[j])
-        {
-          swap(data_[i], data_[j]);
-          swaps_.push_back(make_pair(i, j));
-        }
-      }
+    int n = data_.size();
+    for (int i = (n - 1) / 2; i + 1 != 0; i--)
+      down(i);
   }
 
 public:
@@ -66,7 +93,7 @@ public:
 int main()
 {
   std::ios_base::sync_with_stdio(false);
-  HeapBuilder heap_builder;
-  heap_builder.Solve();
+  HeapBuilder heap;
+  heap.Solve();
   return 0;
 }
