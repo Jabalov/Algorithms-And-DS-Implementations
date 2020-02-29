@@ -54,7 +54,7 @@ private:
     return p;
   }
 
-  void down(int i)
+  void heapify_down(int i)
   {
     int idx = i;
     int l = left(i), r = right(i);
@@ -69,7 +69,7 @@ private:
     {
       swap(data_[i], data_[idx]);
       swaps_.push_back(make_pair(i, idx));
-      down(idx);
+      heapify_down(idx);
     }
   }
 
@@ -78,7 +78,7 @@ private:
     swaps_.clear();
     int n = data_.size();
     for (int i = (n - 1) / 2; i + 1 != 0; i--)
-      down(i);
+      heapify_down(i);
   }
 
 public:
