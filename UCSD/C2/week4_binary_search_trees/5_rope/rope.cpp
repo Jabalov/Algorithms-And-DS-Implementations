@@ -2,35 +2,43 @@
 #include <string>
 #include <iostream>
 
+using namespace std;
 
-class Rope {
-	std::string s;
+class Rope
+{
+	string s;
+
 public:
-	Rope(const std::string &s) : s(s) { 
+	Rope(const string &s) : s(s)
+	{
 	}
 
-	void process( int i, int j, int k ) {
-                // Replace this code with a faster implementation
-                std::string t = s.substr(0, i) + s.substr(j + 1);
-                s = t.substr(0, k) + s.substr(i, j - i + 1) + t.substr(k);
+	void process(int i, int j, int k)
+	{
+		// Replace this code with a faster implementation
+		string t = s.substr(0, i) + s.substr(j + 1);
+		s = t.substr(0, k) + s.substr(i, j - i + 1) + t.substr(k);
 	}
 
-	std::string result() {
+	string result()
+	{
 		return s;
 	}
 };
 
-int main() {
-	std::ios_base::sync_with_stdio(0);
-	std::string s;
-	std::cin >> s;
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	string s;
+	cin >> s;
 	Rope rope(s);
 	int actions;
-	std::cin >> actions;
-        for (int action_index = 0; action_index < actions; ++action_index) {
-                int i, j, k;
-		std::cin >> i >> j >> k;
+	cin >> actions;
+	for (int action_index = 0; action_index < actions; ++action_index)
+	{
+		int i, j, k;
+		cin >> i >> j >> k;
 		rope.process(i, j, k);
 	}
-	std::cout << rope.result() << std::endl;
+	cout << rope.result() << endl;
 }
