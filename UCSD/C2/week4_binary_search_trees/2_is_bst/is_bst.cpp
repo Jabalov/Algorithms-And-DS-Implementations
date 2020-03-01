@@ -14,30 +14,40 @@ struct Node
   Node(int key_, int left_, int right_) : key(key_), left(left_), right(right_) {}
 };
 
-void inO(const vector<Node> &tree, int idx, vector<int> &result)
+vector<Node> tree;
+
+void ino_traversal(int index, vector<int> &res)
 {
-  if (tree[idx].left != -1)
-    inO(tree, tree[idx].left, result);
+  if (index == -1)
+    return;
 
-  result.push_back(tree[idx].key);
+  ino_traversal(tree[index].left, res);
+  res.push_back(tree[index].key);
+  ino_traversal(tree[index].right, res);
+}
 
-  if (tree[idx].right != -1)
-    inO(tree, tree[idx].right, result);
+void inO(vector<int> &res, const vector<Node> &tree)
+{
+  ino_traversal(0, res);
 }
 
 bool IsBinarySearchTree(const vector<Node> &tree)
 {
-  vector<int> in_order, not_sorted_vector;
-  inO(tree, 0, in_order);
+  if (tree.size() == 0)
+    return true;
 
-  not_sorted_vector = in_order;
-  sort(in_order.begin(), in_order.end());
+  else
+  {
 
-  for (int i = 0; i < tree.size(); i++)
-    if (not_sorted_vector[i] != in_order[i])
-      return false;
+    vector<int> res;
+    inO(res, tree);
 
-  return true;
+    for (int i = 1; i < res.size(); i++)
+      if (res[i] < res[i - 1])
+        return false;
+
+    return true;
+  }
 }
 
 int main()
