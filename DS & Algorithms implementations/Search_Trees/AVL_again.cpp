@@ -1,201 +1,204 @@
-#include <iostream>
 #include <cstdio>
-#include <sstream>
-#include <algorithm>
+#include <stdlib.h>
 #include <math.h>
-#define pow2(n) (1 << (n))
-using namespace std;
 
 struct Node
 {
-    int data, bf;
-    struct Node *left, *right;
+    struct Node *lchild;
+    int data;
+    int bf;
+    struct Node *rchild;
 } *root = NULL;
 
 int height(struct Node *p)
 {
-    int l, r;
-    l = r = 0;
+    int x = 0, y = 0;
     if (!p)
         return 0;
-    l = height(p->left);
-    r = height(p->right);
-
-    return l > r ? l + 1 : r + 1;
+    x = height(p->lchild);
+    y = height(p->rchild);
+    return x > y ? x + 1 : y + 1;
 }
 
-void insert(int x)
+void Insert(int key)
 {
-    struct Node *t = root, *r = NULL, *p;
+    struct Node *t = root;
+    struct Node *r = NULL, *p;
 
     if (root == NULL)
     {
-        p = (struct Node *)malloc(sizeof(Node));
-        p->data = x;
+        p = (struct Node *)malloc(sizeof(struct Node));
+        p->data = key;
         p->bf = 0;
-        p->left = p->right = NULL;
+        p->lchild = p->rchild = NULL;
         root = p;
+        return;
     }
-
     while (t != NULL)
     {
         r = t;
-        if (t->data > x)
-            t = t->left;
-        else if (t->data < x)
-            t = t->right;
+        if (key < t->data)
+            t = t->lchild;
+        else if (key > t->data)
+            t = t->rchild;
         else
             return;
     }
-
     p = (struct Node *)malloc(sizeof(struct Node));
-    p->data = x;
-    p->left = p->right = NULL;
-    if (x < r->data)
-        r->left = p;
+    p->data = key;
+    p->lchild = p->rchild = NULL;
+
+    if (key < r->data)
+        r->lchild = p;
     else
-        r->right = p;
+        r->rchild = p;
 }
-
-struct Node *LL(struct Node *p)
+struct Node *LLRotation(struct Node *p)
 {
-    int l, r;
-    struct Node *pl = p->left;
+    int lbf, rbf;
+    struct Node *pl = p->lchild;
     pl->bf = 0;
-
-    p->left = pl->right;
-    pl->right = p;
-
-    l = height(p->left) + 1;
-    r = height(p->right) + 1;
-
-    p->bf = l - r;
+    p->lchild = pl->rchild;
+    pl->rchild = p;
+    lbf = height(p->lchild) + 1;
+    rbf = height(p->rchild) + 1;
+    p->bf = lbf - rbf;
     if (p == root)
         root = pl;
     return pl;
 }
-
-struct Node *RR(struct Node *p)
+struct Node *LRRotation(struct Node *p)
 {
-    int l, r;
-    struct Node *pr = p->right;
-    pr->bf = 0;
-
-    p->right = pr->left;
-    pr->left = p;
-
-    l = height(p->left) + 1;
-    r = height(p->right) + 1;
-    p->bf = l - r;
-    if (p == root)
-        root = pr;
-    return pr;
-}
-
-struct Node *LR(struct Node *p)
-{
-    int l, r;
-    struct Node *pl = p->left;
-    struct Node *plr = pl->right;
+    int lbf, rbf;
+    struct Node *pl = p->lchild;
+    struct Node *plr = pl->rchild;
     plr->bf = 0;
 
-    p->left = plr->right;
-    pl->right = plr->left;
-    plr->left = pl;
-    plr->right = p;
+    p->lchild = plr->rchild;
+    pl->rchild = plr->lchild;
+    plr->lchild = pl;
+    plr->rchild = p;
+    lbf = height(p->lchild) + 1;
+    rbf = height(p->rchild) + 1;
+    p->bf = lbf - rbf;
 
-    l = height(p->left) + 1;
-    r = height(p->right) + 1;
-    p->bf = l - r;
-
-    l = height(pl->left) + 1;
-    r = height(pl->right) + 1;
-    pl->bf = l - r;
-
+    lbf = height(pl->lchild) + 1;
+    rbf = height(pl->rchild) + 1;
+    pl->bf = lbf - rbf;
     if (p == root)
         root = plr;
     return plr;
 }
-
-struct Node *RL(struct Node *p)
+struct Node *RRRotation(struct Node *p)
 {
-    int l, r;
-    struct Node *pr = p->right;
-    struct Node *prl = pr->left;
+    int lbf, rbf;
+    struct Node *pr = p->rchild;
+    pr->bf = 0;
+    p->rchild = pr->lchild;
+    pr->lchild = p;
+    lbf = height(p->lchild) + 1;
+    rbf = height(p->rchild) + 1;
+    p->bf = lbf - rbf;
+    if (p == root)
+        root = pr;
+    return pr;
+}
+struct Node *RLRotation(struct Node *p)
+{
+    int lbf, rbf;
+    struct Node *pr = p->rchild;
+    struct Node *prl = pr->lchild;
     prl->bf = 0;
 
-    p->right = prl->left;
-    pr->left = prl->right;
-    prl->right = pr;
-    prl->left = p;
+    p->rchild = prl->lchild;
+    pr->lchild = prl->rchild;
+    prl->rchild = pr;
+    prl->lchild = p;
+    lbf = height(p->lchild) + 1;
+    rbf = height(p->rchild) + 1;
+    p->bf = lbf - rbf;
 
-    l = height(p->left) + 1;
-    r = height(p->right) + 1;
-    p->bf = l - r;
-
-    l = height(pr->left) + 1;
-    r = height(pr->right) + 1;
-    pr->bf = l - r;
-
+    lbf = height(pr->lchild) + 1;
+    rbf = height(pr->rchild) + 1;
+    pr->bf = lbf - rbf;
     if (p == root)
         root = prl;
     return prl;
 }
-
-struct Node *recursive_insert(struct Node *p, int x)
+struct Node *RInsert(struct Node *p, int key)
 {
     struct Node *t;
-    int l, r;
+    int lbf, rbf;
     if (p == NULL)
     {
         t = (struct Node *)malloc(sizeof(struct Node));
-        t->data = x;
+        t->data = key;
         t->bf = 0;
-        t->left = t->right = NULL;
+        t->lchild = t->rchild = NULL;
         return t;
     }
+    if (key < p->data)
+        p->lchild = RInsert(p->lchild, key);
+    else if (key > p->data)
+        p->rchild = RInsert(p->rchild, key);
 
-    if (x < p->data)
-        p->left = recursive_insert(p->left, x);
-    else if (x > p->data)
-        p->right = recursive_insert(p->right, x);
-
-    l = height(p->left) + 1;
-    r = height(p->right) + 1;
-    p->bf = l - r;
-
-    if (p->bf == 2 && p->left->bf == 1)
-        return LL(p);
-    if (p->bf == 2 && p->left->bf == -1)
-        return LR(p);
-    if (p->bf == -2 && p->right->bf == -1)
-        return RR(p);
-    if (p->bf == -2 && p->right->bf == 1)
-        return RL(p);
+    lbf = height(p->lchild) + 1;
+    rbf = height(p->rchild) + 1;
+    p->bf = lbf - rbf;
+    if (p->bf == 2 && p->lchild->bf == 1)
+        return LLRotation(p);
+    if (p->bf == 2 && p->lchild->bf == -1)
+        return LRRotation(p);
+    if (p->bf == -2 && p->rchild->bf == -1)
+        return RRRotation(p);
+    if (p->bf == -2 && p->rchild->bf == 1)
+        return RLRotation(p);
     return p;
 }
-
-void inorder(struct Node *p)
+void Inorder(struct Node *p)
 {
     if (p)
     {
-        inorder(p->left);
+        Inorder(p->lchild);
         printf("%d ", p->data);
-        inorder(p->right);
+        Inorder(p->rchild);
     }
 }
+struct Node *Search(int key)
+{
+    struct Node *t = root;
 
+    while (t != NULL)
+    {
+        if (key == t->data)
+            return t;
+        else if (key < t->data)
+            t = t->lchild;
+        else
+            t = t->rchild;
+    }
+    return NULL;
+}
 int main()
 {
     struct Node *temp;
-    insert(30);
-    recursive_insert(root, 50);
-    recursive_insert(root, 40);
-    recursive_insert(root, 20);
-    recursive_insert(root, 10);
-    recursive_insert(root, 42);
-    recursive_insert(root, 46);
 
-    inorder(root);
+    Insert(30);
+    RInsert(root, 50);
+    RInsert(root, 40);
+    RInsert(root, 20);
+    RInsert(root, 10);
+    RInsert(root, 42);
+    RInsert(root, 46);
+
+    Inorder(root);
     printf("\n");
+
+    temp = Search(2);
+    if (temp != NULL)
+        printf("element %d is found\n", temp->data);
+    else
+        printf("element is not found\n");
+
+    return 0;
 }
