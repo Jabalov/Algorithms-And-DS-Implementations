@@ -6,11 +6,13 @@ struct Node
     struct Node *next;
 };
 
-void sorted_insert(struct Node **p, int x)
+void sorted_insert(Node **p, int x)
 {
-    struct Node *tmp, *q = NULL, *it = *p;
+    Node *tmp;
+    Node *q = NULL;
+    Node *it = *p;
 
-    tmp = (struct Node *)malloc(sizeof(struct Node *));
+    tmp = (Node *)malloc(sizeof(Node *));
     tmp->data = x;
     tmp->next = NULL;
 
@@ -30,7 +32,7 @@ void sorted_insert(struct Node **p, int x)
     }
 }
 
-struct Node *search(struct Node *p, int key)
+Node *search(Node *p, int key)
 {
     while (p != NULL)
     {

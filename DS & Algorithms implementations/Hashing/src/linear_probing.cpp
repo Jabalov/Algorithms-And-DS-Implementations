@@ -6,9 +6,9 @@ int hash_func(int key)
     return key % SIZE;
 }
 
-int probing(int A[], int x)
+int probing(int A[], int value)
 {
-    int idx = hash_func(x);
+    int idx = hash_func(value);
     int i = 0;
 
     while (A[(idx + i) % SIZE] != 0)
@@ -17,15 +17,15 @@ int probing(int A[], int x)
     return (idx + i) % SIZE;
 }
 
-void insert(int A[], int x)
+void insert(int A[], int value)
 {
-    int idx = hash_func(x);
-    int i = 0;
+    int idx = hash_func(value);
+    //int i = 0;
 
-    while (A[idx] = !0)
-        idx = probing(A, x);
+    while (A[idx] != 0)
+        idx = probing(A, value);
 
-    A[idx] = x;
+    A[idx] = value;
 }
 
 int search(int A[], int x)

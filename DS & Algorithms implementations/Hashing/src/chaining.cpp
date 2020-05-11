@@ -6,15 +6,15 @@ int hash_func(int i)
     return i % 10;
 }
 
-void insert(struct Node **p, int x)
+void insert(Node **p, int value)
 {
-    int idx = hash_func(x);
-    sorted_insert(&p[idx], x);
+    int idx = hash_func(value);
+    sorted_insert(&p[idx], value);
 }
 
 int main()
 {
-    struct Node *hash_table[10], *tmp;
+    Node *hash_table[10], *tmp;
 
     for (int i = 0; i < 10; i++)
         hash_table[i] = NULL;
