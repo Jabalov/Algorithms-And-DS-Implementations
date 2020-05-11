@@ -5,11 +5,12 @@
 
 #define HT_PRIME_1 10
 #define HT_PRIME_2 20
+
 static Item DELETED_ITEM = {NULL, NULL};
 
 static Item *new_item(const char *k, const char *v)
 {
-    Item *item = malloc(sizeof(Item));
+    Item *item = (Item *)malloc(sizeof(Item));
 
     item->key = strdup(k);
     item->value = strdup(v);
@@ -19,11 +20,11 @@ static Item *new_item(const char *k, const char *v)
 
 HashTable *new_hashTable()
 {
-    HashTable *hashTable = malloc(sizeof(HashTable));
+    HashTable *hashTable = (HashTable *)malloc(sizeof(HashTable));
 
-    hashTable->sz = 53;
+    hashTable->capacity = 53;
     hashTable->cnt = 0;
-    hashTable->items = calloc((size_t)hashTable->sz, sizeof(Item *));
+    hashTable->items = calloc((size_t)hashTable->capacity, sizeof(Item *));
 
     return hashTable;
 }
@@ -32,7 +33,7 @@ static void delete_item(Item *item) { free(item->key), free(item->value), free(i
 
 void delete_hashTable(HashTable *hashTable)
 {
-    for (int i = 0; i < hashTable->sz; i++)
+    for (int i = 0; i < hashTable->capacity; i++)
     {
         Item *current = hashTable->items[i];
         if (current != NULL)
@@ -66,7 +67,7 @@ static int get_hashCode(const char *s, const int num, const int attempts)
 void insert(HashTable *hashTable, const char *key, const char *value)
 {
     Item *item = new_item(key, value);
-    int idx = get_hashCode(item->key, hashTable->sz, 0);
+    int idx = get_hashCode(item->key, hashTable->capacity, 0);
 
     Item *current = hashTable->items[idx];
 
@@ -80,6 +81,9 @@ void insert(HashTable *hashTable, const char *key, const char *value)
                 hashTable->items[idx] = item;
                 return;
             }
+        idx = get_hashCode(item->key, hashTable->capacity, i);
+        current = hashTable->items[idx];
+        i++;
     }
 
     hashTable->items[idx] = item;
@@ -88,7 +92,7 @@ void insert(HashTable *hashTable, const char *key, const char *value)
 
 char *search(HashTable *hashTable, const char *key)
 {
-    int idx = get_hashCode(key, hashTable->sz, 0);
+    int idx = get_hashCode(key, hashTable->capacity, 0);
     Item *item = hashTable->items[idx];
 
     int i = 0;
@@ -98,7 +102,7 @@ char *search(HashTable *hashTable, const char *key)
             if (strcmp(item->key, key) == 0)
                 return item->value;
 
-        idx = get_hashCode(key, hashTable->sz, i);
+        idx = get_hashCode(key, hashTable->capacity, i);
         item = hashTable->items[idx];
         i++;
     }
@@ -108,7 +112,7 @@ char *search(HashTable *hashTable, const char *key)
 
 void delete_pair(HashTable *hashTable, const char *key)
 {
-    int idx = get_hashCode(key, hashTable->sz, 0);
+    int idx = get_hashCode(key, hashTable->capacity, 0);
     Item *item = hashTable->items[idx];
     int i = 1;
     while (item != NULL)
@@ -122,7 +126,7 @@ void delete_pair(HashTable *hashTable, const char *key)
             }
         }
 
-        idx = get_hashCode(key, hashTable->sz, i);
+        idx = get_hashCode(key, hashTable->capacity, i);
         item = hashTable->items[idx];
         i++;
     }

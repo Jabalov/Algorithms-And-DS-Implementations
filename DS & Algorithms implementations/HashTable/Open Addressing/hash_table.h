@@ -9,7 +9,7 @@ typedef struct
 
 typedef struct
 {
-    int sz, cnt;
+    int capacity, cnt;
     Item **items;
 
 } HashTable;
