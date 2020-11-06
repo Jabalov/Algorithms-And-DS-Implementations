@@ -87,3 +87,19 @@ void IntSLList::deleteNode(int el)
         }
     }
 }
+
+bool IntSLList::isInList(int el) const
+{
+    IntSLLNode *tmp;
+    for (tmp = head; (tmp != 0) && !(tmp->info == el); tmp = tmp->next)
+        ;
+    return tmp != 0;
+}
+
+void IntSLList::printAll() const
+{
+    IntSLLNode *tmp;
+    for (tmp = head; tmp != 0; tmp = tmp->next)
+        std::cout << tmp->info << " ";
+    std::cout << std::endl;
+}
