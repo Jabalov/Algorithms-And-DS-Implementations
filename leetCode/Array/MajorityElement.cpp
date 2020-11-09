@@ -5,12 +5,29 @@
 #include <numeric>
 #include <algorithm>
 #include <string>
+#include <map>
 
 using namespace std;
 
 class Solution
 {
 public:
+    int majorityElement2(vector<int> &nums)
+    {
+        int n = nums.size() / 2;
+        map<int, int> count;
+
+        for (int i = 0; i < nums.size(); i++)
+            count[nums[i]]++;
+
+        int element = 0;
+
+        for (int i = 0; i < nums.size(); i++)
+            if (count[nums[i]] > n)
+                element = nums[i];
+
+        return element;
+    }
     int majorityElement(vector<int> &nums)
     {
         int element = nums[0];
@@ -36,5 +53,5 @@ int main()
 {
     auto sol = Solution();
     vector<int> v{2, 2, 1, 1, 1, 2, 2};
-    cout << sol.majorityElement(v);
+    cout << sol.majorityElement2(v);
 }
