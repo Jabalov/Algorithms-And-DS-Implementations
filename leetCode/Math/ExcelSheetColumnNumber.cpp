@@ -27,6 +27,6 @@ public:
 int main()
 {
     auto sol = Solution();
-    string v = "ZY";
+    string v = "ABCD";
     cout << sol.titleToNumber(v);
 }

@@ -1,0 +1,34 @@
+﻿Results:
+
+#Elements  #Unions    Forest   Hash   #Sets
+       1m       1m      *0.7    1.0    162k
+       1m       5m       2.7   *2.3      43
+       1m      10m       5.4   *3.7       1
+       1m      25m      13.6   *7.9       1
+       1m      50m      27.3  *14.9       1
+       1m      70m      38.3  *20.6       1
+       1m      80m      43.6  *23.7       1
+
+      10m       1m      *0.6    1.2      9m
+      10m       5m      *3.4    7.9      5m
+      10m      10m      *7.4   14.7    1.6m
+      10m      25m     *12.2   20.9     68k
+      10m      50m      32.8  *30.7     438
+      10m      70m      45.1  *36.0       8
+      10m      80m      50.4  *30.7     438
+
+      20m       1m      *0.8    1.4     19m
+      20m       5m      *3.9    6.8     15m
+      20m      10m      *7.9   17.7     10m
+      20m      25m     *20.4   36.4    1.9m
+      20m      50m     *38.4   45.2    137k
+      20m      70m     *60.0   62.7     18k
+      20m      80m     *59.3   56.7    6.7k
+
+
+Legend:
+#Elements: Number of users
+#Unions:   Number of interactions
+Forest:   Time in seconds for performing the number of interactions in DisjointSetForest
+Hash:      Time in seconds for performing the number of interactions in DisjointSetHash
+#Groups:   Number of sets left after the unions/interactions

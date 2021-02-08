@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2 - HashCollisions", "M2 - HashCollisions\M2 - HashCollisions.csproj", "{7BD37D7C-359F-4F51-AA02-166D74CB2A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3 - BloomFilter", "M3 - BloomFilter\M3 - BloomFilter.csproj", "{2D04D038-6E97-4D39-9D88-9A20E9F3F438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M4 - CuckooFilter", "M4 - CuckooFilter\M4 - CuckooFilter.csproj", "{16502BB8-9A15-47D7-AD04-9381F9BD31B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M5 - RTree", "M5 - RTree\M5 - RTree.csproj", "{3DC3FE96-5AAD-4331-BA2B-BFEE8DC42B25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M6 - DisjointSet", "M6 - DisjointSet\M6 - DisjointSet.csproj", "{F26E6BF5-F91C-44CA-8570-4B5787A8A4E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M7 - Trie", "M7 - Trie\M7 - Trie.csproj", "{C19AB079-BB77-4EA7-8758-7DE618BEF048}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M8 - SuffixTree", "M8 - SuffixTree\M8 - SuffixTree.csproj", "{3152FF52-318A-4FAF-A083-A77DC82EC659}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BD37D7C-359F-4F51-AA02-166D74CB2A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD37D7C-359F-4F51-AA02-166D74CB2A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD37D7C-359F-4F51-AA02-166D74CB2A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD37D7C-359F-4F51-AA02-166D74CB2A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D04D038-6E97-4D39-9D88-9A20E9F3F438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D04D038-6E97-4D39-9D88-9A20E9F3F438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D04D038-6E97-4D39-9D88-9A20E9F3F438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D04D038-6E97-4D39-9D88-9A20E9F3F438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16502BB8-9A15-47D7-AD04-9381F9BD31B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16502BB8-9A15-47D7-AD04-9381F9BD31B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16502BB8-9A15-47D7-AD04-9381F9BD31B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16502BB8-9A15-47D7-AD04-9381F9BD31B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC3FE96-5AAD-4331-BA2B-BFEE8DC42B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC3FE96-5AAD-4331-BA2B-BFEE8DC42B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC3FE96-5AAD-4331-BA2B-BFEE8DC42B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC3FE96-5AAD-4331-BA2B-BFEE8DC42B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F26E6BF5-F91C-44CA-8570-4B5787A8A4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F26E6BF5-F91C-44CA-8570-4B5787A8A4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F26E6BF5-F91C-44CA-8570-4B5787A8A4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F26E6BF5-F91C-44CA-8570-4B5787A8A4E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C19AB079-BB77-4EA7-8758-7DE618BEF048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C19AB079-BB77-4EA7-8758-7DE618BEF048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C19AB079-BB77-4EA7-8758-7DE618BEF048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C19AB079-BB77-4EA7-8758-7DE618BEF048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3152FF52-318A-4FAF-A083-A77DC82EC659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3152FF52-318A-4FAF-A083-A77DC82EC659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3152FF52-318A-4FAF-A083-A77DC82EC659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3152FF52-318A-4FAF-A083-A77DC82EC659}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+EndGlobal
