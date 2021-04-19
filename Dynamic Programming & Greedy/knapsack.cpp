@@ -34,9 +34,9 @@ int kp_memo(int wt[], int profit[], int w, int n)
     {
         int result;
         if(wt[n] > w)
-            result = kp_recursion(wt, profit, w, n-1);
+            result = kp_memo(wt, profit, w, n-1);
         else
-            result = max(kp_recursion(wt, profit, w-wt[n], n-1) + profit[n], kp_recursion(wt, profit, w, n-1));
+            result = max(kp_memo(wt, profit, w-wt[n], n-1) + profit[n], kp_memo(wt, profit, w, n-1));
 
         memo[w][n] = result;
     }
