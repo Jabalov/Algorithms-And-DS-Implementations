@@ -22,7 +22,7 @@ bool isSubsetSum_dp(int a[], int n, int sum)
     for (int i = 0; i <= n; i++)
         subset[i][0] = true;
 
-    for (int i = 0; i <= sum; i++)
+    for (int i = 1; i <= sum; i++)
         subset[0][i] = false;
 
     for (int i = 1; i <= n; i++)
